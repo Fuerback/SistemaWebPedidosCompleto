@@ -2,14 +2,32 @@ package com.meuspedidos.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
+@Table(name="pedido")
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="pedidoCodigo")
+	private Integer codigo;
+	@ManyToOne
+	@JoinColumn(name="pedidoCliente" , referencedColumnName="clienteCodigo")
 	private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name="pedidoItem", referencedColumnName="itemCodigo")
 	private Item item;
 	
 	public Pedido() {
@@ -19,13 +37,13 @@ public class Pedido implements Serializable {
 	public Pedido(Cliente cliente, Item item) {
 		this.cliente = cliente;
 		this.item = item;
-	}	
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -38,12 +56,20 @@ public class Pedido implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Pedido other = (Pedido) obj;
-		if (cliente == null) {
-			if (other.cliente != null)
+		if (codigo == null) {
+			if (other.codigo != null)
 				return false;
-		} else if (!cliente.equals(other.cliente))
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public Integer getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public Cliente getCliente() {

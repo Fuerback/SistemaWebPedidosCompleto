@@ -39,12 +39,12 @@ criaPedidoModulo.controller('criaPedidoController', function ($scope, $http) {
 	  }
   }
 
-  $scope.salvarPedido = function(){ 
-    $http.post(urlPedido, $scope.pedido).then(function(pedido) {
-    	$scope.pedidos.push(pedido.data.data);
-    	$scope.limparCampos();
-    	$scope.listarPedidos();
-	});
+  $scope.salvarPedido = function(){
+	  $http.post(urlPedido, $scope.pedido).then(function(pedido) {
+	    	$scope.pedidos.push(pedido.data.data);
+	    	$scope.listarPedidos();
+	    	$scope.limparCampos();
+		});  
   }
 
   $scope.limparCampos = function(){
@@ -55,8 +55,8 @@ criaPedidoModulo.controller('criaPedidoController', function ($scope, $http) {
     $scope.pedido = pedidoSelecionado;
   }
   
-  $scope.listarPedidos();
   $scope.listarClientes();
   $scope.listarItens();
+  $scope.listarPedidos();
 
 })

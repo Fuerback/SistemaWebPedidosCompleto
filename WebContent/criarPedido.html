@@ -9,7 +9,7 @@
     <title>Meus Pedidos</title>
     
     <!-- Angular JS -->
-    <script src="dist/js/angular.min.js"></script>
+    <script src="dist/js/angular.min.js"></script>  
     
     <!-- Controller -->
     <script src="controller/dadosCriaPedido.js"></script>
@@ -70,7 +70,7 @@
           <div class="form-group row">
             <label for="preco" class="col-sm-1 control-label">Preço R$</label>
             <div class="col-sm-10">
-              <input type="number" onchange="setTwoNumberDecimal(this)" min="0" step="0.01" value="0.00" ng-model="pedido.item.preco" />
+              <input type="number" onchange="setTwoNumberDecimal(this)" min="0" value="0.00" ng-model="pedido.item.preco" />
             </div>
           </div>
           

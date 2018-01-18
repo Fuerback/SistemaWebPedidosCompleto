@@ -1,5 +1,6 @@
 package com.meuspedidos.model.rest;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class PedidoFacede {
 	private static List<Pedido> listaPedidos = new ArrayList<Pedido>();
 	
 	static {
-		listaPedidos.add(new Pedido(new Cliente("Luke Skywalker"), new Item("Millenium Falcon", 0, 550.000, 1)));
+		listaPedidos.add(new Pedido(new Cliente("Luke Skywalker"), new Item("Millenium Falcon", 0, new BigDecimal("550000.00"), 1)));
 	}
 	
 	@GET

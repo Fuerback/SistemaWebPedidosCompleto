@@ -1,6 +1,7 @@
 package com.meuspedidos.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,14 +12,14 @@ public class Item implements Serializable {
 	
 	private String produto;
 	private Integer quantidade;
-	private Double preco;
+	private BigDecimal preco;
 	private Integer multiplo;
 	
 	public Item() {
 		
 	}
 	
-	public Item(String produto, Integer quantidade, Double preco, Integer multiplo) {
+	public Item(String produto, Integer quantidade, BigDecimal preco, Integer multiplo) {
 		this.produto = produto;
 		this.quantidade = quantidade;
 		this.preco = preco;
@@ -45,10 +46,10 @@ public class Item implements Serializable {
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
-	public Double getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
-	public void setPreco(Double preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 

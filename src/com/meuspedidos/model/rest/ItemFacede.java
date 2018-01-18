@@ -1,5 +1,6 @@
 package com.meuspedidos.model.rest;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class ItemFacede {
 	static List<Item> listaItens = new ArrayList<Item>();
 	
 	static {
-		listaItens.add(new Item("Millenium Falcon", 0, 550.000, 1));
-		listaItens.add(new Item("X-Wing", 0, 60.000, 2));
-		listaItens.add(new Item("Super Star Destroyer", 0, 4570.000, 1));
-		listaItens.add(new Item("TIE Fighter", 0, 75.000, 2));
-		listaItens.add(new Item("Lightsaber", 0, 6.000, 5));
-		listaItens.add(new Item("DLT-19 Heavy Blaster Rifle", 0, 5.800, 1));
-		listaItens.add(new Item("DL-44 Heavy Blaster Pistol", 0, 1.500, 10));
+		listaItens.add(new Item("Millenium Falcon", 1, new BigDecimal("550000.00"), 1));
+		listaItens.add(new Item("X-Wing", 2, new BigDecimal("60000.00"), 2));
+		listaItens.add(new Item("Super Star Destroyer", 1, new BigDecimal("4570000.00"), 1));
+		listaItens.add(new Item("TIE Fighter", 2, new BigDecimal("75000.00"), 2));
+		listaItens.add(new Item("Lightsaber", 5, new BigDecimal("6000.00"), 5));
+		listaItens.add(new Item("DLT-19 Heavy Blaster Rifle", 1, new BigDecimal("5800.00"), 1));
+		listaItens.add(new Item("DL-44 Heavy Blaster Pistol", 10, new BigDecimal("1500.00"), 10));
 	}
 	
 	@GET

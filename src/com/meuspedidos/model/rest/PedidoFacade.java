@@ -36,7 +36,6 @@ public class PedidoFacade {
 	
 	@PUT
 	public void alterarPedido(Pedido pedido) {
-		System.out.println("PUT alterarPedido");
 		pedidoServiceInterface.alterarPedido(pedido);
 	}	 
 }

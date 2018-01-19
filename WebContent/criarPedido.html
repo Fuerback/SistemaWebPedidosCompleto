@@ -54,22 +54,26 @@
           <div class="form-group row">
             <label for="produto" class="col-sm-1 control-label">Produtos</label>
             <div class="col-sm-10">
-              <select class="custom-select" id="selecionaProduto" ng-change="alteraProduto()" ng-model="pedido.item" ng-options="item.produto for item in itens track by item.produto">
+              <select class="custom-select" id="selecionaProduto" ng-change="atualizaCampos()" ng-model="pedido.item" ng-options="item.produto for item in itens track by item.produto">
               </select>
             </div>
           </div>
           <div class="form-group row">
             <label for="quantidade" class="col-sm-1 control-label">Quantidade</label>
             <div class="col-sm-10" id="div-quantidade">
-              <input class="quantidade-input" type="number" onkeydown="return false" id="quantidade" ng-model="pedido.item.quantidade" required />
+              <input class="quantidadeInput" type="number" onkeydown="return false" id="quantidade" ng-model="pedido.item.quantidade" required />
             </div>
           </div>
           <div class="form-group row">
             <label for="preco" class="col-sm-1 control-label">Preço R$</label>
             <div class="col-sm-10">
-              <input type="text" min="1" step="0.01" value="0.00" money-mask ng-model="pedido.item.preco" />
+              <input class="precoInput" type="text" min="1" ng-change="atualizaRentabilidade()" step="0.01" value="0.00" money-mask ng-model="pedido.preco" />
             </div>
           </div>
+          <div class="form-group">
+    		<label for="rentabilidade">Rentabilidade</label>
+    		<input class="rentabilidadeInput" type="text" readonly>
+  		  </div>
           
           <div align="left">
             <button type="submit" ng-click="salvarPedido()" class="btn btn-success mb-2">Registrar</button>
@@ -92,7 +96,7 @@
                 <td>{{pedidoTabela.cliente.nome}}</td>
                 <td>{{pedidoTabela.item.produto}}</td>
                 <td>{{pedidoTabela.item.quantidade}}</td>
-                <td>{{pedidoTabela.item.preco}}</td>
+                <td>{{pedidoTabela.preco}}</td>
               </tr>
             </tbody>
           </table>

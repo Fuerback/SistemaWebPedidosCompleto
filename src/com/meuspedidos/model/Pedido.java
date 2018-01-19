@@ -29,14 +29,17 @@ public class Pedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="pedidoItem", referencedColumnName="itemCodigo")
 	private Item item;
+	@Column(name="pedidoPreco")
+	private String preco;
 	
 	public Pedido() {
 		
 	}
 	
-	public Pedido(Cliente cliente, Item item) {
+	public Pedido(Cliente cliente, Item item, String preco) {
 		this.cliente = cliente;
 		this.item = item;
+		this.preco = preco;
 	}
 
 	@Override
@@ -62,6 +65,14 @@ public class Pedido implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+
+	public String getPreco() {
+		return preco;
+	}
+
+	public void setPreco(String preco) {
+		this.preco = preco;
 	}
 
 	public Integer getCodigo() {

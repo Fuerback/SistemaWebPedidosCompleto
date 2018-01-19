@@ -57,11 +57,38 @@ criaPedidoModulo.controller('CriaPedidoController', function ($scope, $http) {
     $scope.pedido = pedidoSelecionado;
   }
   
-  $scope.alteraProduto = function() {
+  $scope.atualizaCampos = function() {
 	if($scope.pedido.item != undefined) {
-      document.getElementsByClassName("quantidade-input")[0].setAttribute("step", $scope.pedido.item.multiplo);
-      document.getElementsByClassName("quantidade-input")[0].setAttribute("value", $scope.pedido.item.multiplo);
+      $scope.atualizaPreco();
+      $scope.atualizaQuantidade();
+      $scope.atualizaRentabilidade();
     }
+  }
+  
+  $scope.atualizaPreco = function(){
+	  $scope.pedido.preco = $scope.pedido.item.preco;
+	  }
+  
+  $scope.atualizaQuantidade = function(){
+	  document.getElementsByClassName("quantidadeInput")[0].setAttribute("step", $scope.pedido.item.multiplo);
+      document.getElementsByClassName("quantidadeInput")[0].setAttribute("value", $scope.pedido.item.multiplo);
+	  }
+  
+  $scope.atualizaRentabilidade = function() {
+	  if($scope.pedido.item != undefined) {
+		  if($scope.pedido.item.preco < $scope.pedido.preco) {
+			  document.getElementsByClassName("rentabilidadeInput")[0].setAttribute("value", "Ótima");
+		  } else {
+			  var porcentagem = 0.1;
+			  var valorPorcentagem = $scope.pedido.item.preco*porcentagem;
+			  var valorMaximoDesconto = $scope.pedido.item.preco-valorPorcentagem;			  
+			  if ($scope.pedido.preco < valorMaximoDesconto) {
+				  document.getElementsByClassName("rentabilidadeInput")[0].setAttribute("value", "Ruim");
+			  } else {
+				  document.getElementsByClassName("rentabilidadeInput")[0].setAttribute("value", "Boa");
+			  }
+		  }
+	  }
   }
   
   $scope.listarClientes();

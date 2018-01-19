@@ -35,9 +35,6 @@
             <li class="nav-item active">
               <a class="nav-link" href="criarPedido.html">Criar pedido</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="editarPedidos.html">Pedidos</a>
-            </li>
           </ul>
         </div>
       </nav>
@@ -63,14 +60,14 @@
           </div>
           <div class="form-group row">
             <label for="quantidade" class="col-sm-1 control-label">Quantidade</label>
-            <div class="col-sm-10">
-              <input type="number" min="1" class="form-control" id="quantidade" ng-model="pedido.item.quantidade" required />
+            <div class="col-sm-10" id="div-quantidade">
+              <input type="number" min="1" step="1" class="form-control" id="quantidade" ng-model="pedido.item.quantidade" required />
             </div>
           </div>
           <div class="form-group row">
             <label for="preco" class="col-sm-1 control-label">Preço R$</label>
             <div class="col-sm-10">
-              <input type="number" onchange="setTwoNumberDecimal(this)" min="0" value="0.00" ng-model="pedido.item.preco" />
+              <input type="number" onchange="setTwoNumberDecimal(this)" min="1" value="0.00" ng-model="pedido.item.preco" />
             </div>
           </div>
           

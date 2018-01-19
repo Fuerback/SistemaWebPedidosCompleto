@@ -1,6 +1,6 @@
-var criaPedidoModulo = angular.module('criaPedidoModulo', []);
+var criaPedidoModulo = angular.module('criaPedidoModulo', ['rw.moneymask']);
 
-criaPedidoModulo.controller('criaPedidoController', function ($scope, $http) {
+criaPedidoModulo.controller('CriaPedidoController', function ($scope, $http) {
 	
   urlPedido = 'http://localhost:8080/MeusPedidos/rest/pedidos';
   urlCliente = 'http://localhost:8080/MeusPedidos/rest/clientes';
@@ -40,11 +40,13 @@ criaPedidoModulo.controller('criaPedidoController', function ($scope, $http) {
   }
 
   $scope.salvarPedido = function(){
-	  $http.post(urlPedido, $scope.pedido).then(function(pedido) {
-	    	$scope.pedidos.push(pedido.data.data);
-	    	$scope.listarPedidos();
-	    	$scope.limparCampos();
-		});  
+	$http.post(urlPedido, $scope.pedido).then(function(pedido) {
+	  $scope.pedidos.push(pedido.data.data);
+	  $scope.listarPedidos();
+	  $scope.limparCampos();
+	}).catch(function(erro) {
+	  alert(erro);
+	});  
   }
 
   $scope.limparCampos = function(){
@@ -53,6 +55,13 @@ criaPedidoModulo.controller('criaPedidoController', function ($scope, $http) {
 
   $scope.selecionaPedido = function(pedidoSelecionado){
     $scope.pedido = pedidoSelecionado;
+  }
+  
+  $scope.alteraProduto = function() {
+	if($scope.pedido.item != undefined) {
+      document.getElementsByClassName("quantidade-input")[0].setAttribute("step", $scope.pedido.item.multiplo);
+      document.getElementsByClassName("quantidade-input")[0].setAttribute("value", $scope.pedido.item.multiplo);
+    }
   }
   
   $scope.listarClientes();

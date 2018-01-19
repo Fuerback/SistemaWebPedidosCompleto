@@ -9,11 +9,11 @@
     <title>Meus Pedidos</title>
     
     <!-- Angular JS -->
-    <script src="dist/js/angular.min.js"></script>  
+    <script src="dist/js/angular.min.js"></script>
+    <script src="dist/js/rw-money-mask.min.js"></script>  
     
     <!-- Controller -->
     <script src="controller/dadosCriaPedido.js"></script>
-    <script src="controller/auxiliar.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
     <link href="dist/css/carousel.css" rel="stylesheet">
   </head>
   
-  <body ng-controller='criaPedidoController'>
+  <body ng-controller='CriaPedidoController'>
 
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -54,20 +54,20 @@
           <div class="form-group row">
             <label for="produto" class="col-sm-1 control-label">Produtos</label>
             <div class="col-sm-10">
-              <select class="custom-select" id="selecionaProduto" ng-model="pedido.item" ng-options="item.produto for item in itens track by item.produto">
+              <select class="custom-select" id="selecionaProduto" ng-change="alteraProduto()" ng-model="pedido.item" ng-options="item.produto for item in itens track by item.produto">
               </select>
             </div>
           </div>
           <div class="form-group row">
             <label for="quantidade" class="col-sm-1 control-label">Quantidade</label>
             <div class="col-sm-10" id="div-quantidade">
-              <input type="number" min="1" step="1" class="form-control" id="quantidade" ng-model="pedido.item.quantidade" required />
+              <input class="quantidade-input" type="number" onkeydown="return false" id="quantidade" ng-model="pedido.item.quantidade" required />
             </div>
           </div>
           <div class="form-group row">
             <label for="preco" class="col-sm-1 control-label">Preço R$</label>
             <div class="col-sm-10">
-              <input type="number" onchange="setTwoNumberDecimal(this)" min="1" value="0.00" ng-model="pedido.item.preco" />
+              <input type="text" min="1" step="0.01" value="0.00" money-mask ng-model="pedido.item.preco" />
             </div>
           </div>
           

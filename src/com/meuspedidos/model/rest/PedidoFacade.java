@@ -31,7 +31,6 @@ public class PedidoFacade {
 	
 	@POST
 	public Pedido salvarPedido(Pedido pedido) {
-		System.out.println("POST salvarPedido");
 		return pedidoServiceInterface.salvarPedido(pedido);
 	}
 	

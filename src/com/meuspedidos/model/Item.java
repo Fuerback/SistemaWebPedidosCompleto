@@ -41,10 +41,6 @@ public class Item implements Serializable {
 	public List<Pedido> getPedidos() {
 		return pedido;
 	}
-	
-//	public List<Pedido> getPedidos() {
-//		return pedido;
-//	}
 
 	public void setPedido(List<Pedido> pedido) {
 		this.pedido = pedido;

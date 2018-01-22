@@ -61,7 +61,7 @@
           <div class="form-group row">
             <label for="quantidade" class="col-sm-1 control-label">Quantidade</label>
             <div class="col-sm-10" id="div-quantidade">
-              <input class="quantidadeInput" type="number" onkeydown="return false" id="quantidade" ng-model="pedido.item.quantidade" required />
+              <input class="quantidadeInput" type="number" min="1" onkeydown="return false" id="quantidade" ng-model="pedido.item.quantidade" required />
             </div>
           </div>
           <div class="form-group row">
@@ -74,9 +74,13 @@
     		<label for="rentabilidade">Rentabilidade</label>
     		<input class="rentabilidadeInput" type="text" readonly>
   		  </div>
+  		  
+  		  <div class="alert alert-danger" role="alert" id="alerta">
+   		    O item deve ter uma rentabilidade no mínimo 'Boa'.
+		  </div>
           
           <div align="left">
-            <button type="submit" ng-click="salvarPedido()" class="btn btn-success mb-2">Registrar</button>
+            <button type="submit" id="botao" ng-click="salvarPedido()" class="btn btn-success mb-2">Registrar</button>
           </div>
         </form>
         

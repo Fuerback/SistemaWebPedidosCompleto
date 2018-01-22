@@ -40,17 +40,36 @@ criaPedidoModulo.controller('CriaPedidoController', function ($scope, $http) {
   }
 
   $scope.salvarPedido = function(){
-	  $http.post(urlPedido, $scope.pedido).then(function(pedido) {
-		  $scope.pedidos.push(pedido.data.data);
-		  $scope.listarPedidos();
-		  $scope.limparCampos();
-	  }).catch(function(erro) {
-		  alert(erro);
-	  });
+	  if($scope.camposValidos()) {
+		  $http.post(urlPedido, $scope.pedido).then(function(pedido) {
+			  $scope.pedidos.push(pedido.data.data);
+			  $scope.listarPedidos();
+			  $scope.limparCampos();
+		  }).catch(function(erro) {
+			  alert(erro);
+		  });
+	  } else {
+		  $scope.alertaCamposPreenchidos();
+	  }
+  }
+  
+  $scope.alertaCamposPreenchidos = function() {
+	  document.getElementById("alerta").style.display = "block";
+	  document.getElementById("alerta").innerHTML = "Todos os campos devem ser preenchidos."
+  }
+  
+  $scope.camposValidos = function() {
+	  return $scope.pedido.cliente && $scope.pedido.item &&
+	  $scope.pedido.item.quantidade && $scope.pedido.preco;
+  }
+  
+  $scope.desabilitaAlerta = function() {
+	  document.getElementById("alerta").style.display = "none";
   }
 
   $scope.limparCampos = function(){
 	  $scope.pedido = null;
+	  $scope.desabilitaAlerta();
   }
 
   $scope.selecionaPedido = function(pedidoSelecionado){
@@ -101,12 +120,13 @@ criaPedidoModulo.controller('CriaPedidoController', function ($scope, $http) {
 	  if(disabled) {
 		  document.getElementById("botao").disabled = true;
 		  document.getElementById("alerta").style.display = "block";
+		  document.getElementById("alerta").innerHTML = "O item deve ter uma rentabilidade no mínimo 'Boa'."
 	  }
   }
   
   $scope.listarClientes();
   $scope.listarItens();
   $scope.listarPedidos();
-  document.getElementById("alerta").style.display = "none";
+  $scope.desabilitaAlerta();
 
 })

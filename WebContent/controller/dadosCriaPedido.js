@@ -2,41 +2,35 @@ var criaPedidoModulo = angular.module('criaPedidoModulo', ['rw.moneymask']);
 
 criaPedidoModulo.controller('CriaPedidoController', function ($scope, $http) {
 	
-  urlPedido = 'http://localhost:8080/MeusPedidos/rest/pedidos';
-  urlCliente = 'http://localhost:8080/MeusPedidos/rest/clientes';
-  urlItem = 'http://localhost:8080/MeusPedidos/rest/itens';
+	urlPedido = 'http://18.231.8.236:8080/MeusPedidos/rest/pedidos';
+	urlCliente = 'http://18.231.8.236:8080/MeusPedidos/rest/clientes';
+	urlItem = 'http://18.231.8.236:8080/MeusPedidos/rest/itens';
+	
   
   $scope.listarPedidos = function() {	  
-	  $http.get(urlPedido).then(successCallback, errorCallback);
-
-	  function successCallback(response){
+	  $http.get(urlPedido).then(function successCallback(response) {
 		  $scope.pedidos = response.data;
-	  }
-	  function errorCallback(error){
+	  }).catch(function(erro) {
 		  alert(erro);
-	  }
+	  });
   }
   
   $scope.listarClientes = function() {	  
-	  $http.get(urlCliente).then(successCallback, errorCallback);
-
-	  function successCallback(response){
+	  $http.get(urlCliente).then(function successCallback(response) {
 		  $scope.clientes = response.data;
-	  }
-	  function errorCallback(error){
+	  }).catch(function(erro) {
 		  alert(erro);
-	  }
+	  });
+
   }
   
   $scope.listarItens = function() {	  
-	  $http.get(urlItem).then(successCallback, errorCallback);
-
-	  function successCallback(response){
+	  $http.get(urlItem).then(function successCallback(response) {
 		  $scope.itens = response.data;
-	  }
-	  function errorCallback(error){
+	  }).catch(function(erro) {
 		  alert(erro);
-	  }
+	  });
+
   }
 
   $scope.salvarPedido = function(){
@@ -129,4 +123,6 @@ criaPedidoModulo.controller('CriaPedidoController', function ($scope, $http) {
   $scope.listarPedidos();
   $scope.desabilitaAlerta();
 
-})
+}).config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
